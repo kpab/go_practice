@@ -3,16 +3,29 @@ package main
 import "fmt"
 
 // 型
-// 整数型
+// 浮動小数点型
 
 func main(){
-	var i int = 100
-	fmt.Println(i + 50)
+	var fl64 float64 = 2.4
+	fmt.Println(fl64)
 
-	var i2 int64 = 200
-	fmt.Printf("%T\n", i2)
+	fl := 1.6
+	fmt.Println(fl + fl64)
+	fmt.Printf("%T, %T\n", fl64, fl)
 
-	fmt.Printf("%T\n", int32(i2))
+	var fl32 float32 = 1.2
+	fmt.Printf("%T\n", fl32)
 
-	fmt.Print(i + int(i2))
+	fmt.Printf("%T\n", float64(fl32))
+
+	zero := 0.0
+	pinf := 1.0/zero
+	fmt.Println(pinf)
+
+	ninf := -1.0/zero
+	fmt.Println(ninf)
+
+	nan := zero/zero
+	fmt.Println(nan)
+	
 }
