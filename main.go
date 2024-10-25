@@ -1,30 +1,18 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-func outer(){
-	var s4 string = "outer"
-	fmt.Println(s4)
-}
+// 型
+// 整数型
 
 func main(){
-	// 明示的な定義
-	// var 変数名 型 = 値
 	var i int = 100
-	fmt.Println(i)
+	fmt.Println(i + 50)
 
-	//  暗黙的な定義
-	// 変数名 := 値
-	i2 := 200
-	fmt.Println(i2)
+	var i2 int64 = 200
+	fmt.Printf("%T\n", i2)
 
-	i2 = 250
-	fmt.Println(i2)
+	fmt.Printf("%T\n", int32(i2))
 
-	outer()
-
-	var s5 string = "Not Use"
-	fmt.Println(s5)
+	fmt.Print(i + int(i2))
 }
