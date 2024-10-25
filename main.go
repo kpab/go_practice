@@ -3,26 +3,16 @@ package main
 import "fmt"
 
 // 型
-// 文字列型
-// 文字列はバイト配列の集まり
+// byte(unit8)型
+// 文字列はアスキーコードで表現される
 
 func main(){
-	var s string = "Hello golang"
-	fmt.Println(s)
-	fmt.Printf("%T\n", s)
-	
-	var si string = "300"
-	fmt.Println(si)
-	fmt.Printf("%T\n", si)
+	byteA := []byte{72, 73}
+	fmt.Println(byteA)
+	fmt.Println(string(byteA))
 
-	fmt.Println(`test
-	rtest
-		test
-	`)
+	c := []byte("HI")
+	fmt.Println(c)
 
-	fmt.Println("\"")
-	fmt.Println(`"`)
-
-	fmt.Println(string(s[0]))
-
+	fmt.Println(string(c))
 }
