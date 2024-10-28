@@ -2,15 +2,22 @@ package main
 
 import "fmt"
 
-// 関数を引数にとる関数
-func CallFunction(f func()){
-	f()
+// クロージャーの実装
+// クロージャーとは: 関数と関数の処理に関する関数外の環境をセットとして閉じ込めたもの
+func Later() func(string) string {
+	var store string
+	return func(next string) string{
+		s := store
+		store = next
+		return s
+	}
 }
 
-
-
 func main(){
-	CallFunction(func(){
-		fmt.Println("I'm a function")
-	})	
+	f := Later()
+	fmt.Println(f("Hello"))
+	fmt.Println(f("My"))
+	fmt.Println(f("Name"))
+	fmt.Println(f("is"))
+	fmt.Println(f("golang"))
 }
