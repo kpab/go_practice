@@ -2,34 +2,42 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
-// ラベル付きfor
+// defer(デファー): 関数終了時に行いたい処理を指定
+
+func TestDefer() {
+	defer fmt.Println("END")
+	fmt.Println("START")
+}
+// 複数ある場合は下から実行
+func RunDefer(){
+	defer fmt.Println("1")
+	defer fmt.Println("2")
+	defer fmt.Println("3")
+}
 
 func main(){
-/*
-Loop:
-	for {
-		for {
-			for {
-				fmt.Println("START")
-				break Loop
-			}
-			fmt.Println("処理をしない")
-		}
-		fmt.Println("処理をしない")
+	TestDefer()
+
+	/*
+	defer func() {
+		fmt.Println("1")
+		fmt.Println("2")
+		fmt.Println("3")
+	}()
+	*/
+
+	RunDefer()
+
+	// リソースの解放処理
+	file, err := os.Create("test.txt")
+	if err != nil {
+		fmt.Println(err)
 	}
-	fmt.Println("END")
-*/
-	Loop:
-	for i := 0; i < 3; i++ {
-		for j := 1; j < 3; j++ {
-			if j > 1 {
-				continue Loop
-			}
-			fmt.Println(i, j, i * j)
-		}
-		fmt.Println("処理をしない")
-	}
+	defer file.Close()
+
+	file.Write([]byte("Hello"))
 }
 
