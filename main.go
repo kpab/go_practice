@@ -4,72 +4,54 @@ import (
 	"fmt"
 )
 
-// for
+// switch
+// 式スイッチ
 
 func main(){
 	/*
-	i := 0
-	for {
-		i++
-		if i == 3 {
-			break
-		}
-		fmt.Println("無限")
+	n := 1
+	switch n {
+	case 1, 2:
+		fmt.Println("1 or 2")
+	case 3, 4:
+		fmt.Println("3 or 4")
+	default:
+		fmt.Println("I don't know")
 	}
+	*/
+
+	/*
+	switch n:= 2; n {
+	case 1, 2:
+		fmt.Println("1 or 2")
+	case 3, 4:
+		fmt.Println("3 or 4")
+	default:
+		fmt.Println("I don't know")
+	}
+	*/
+
+	/*
+	n := 6
+	switch {
+	case n > 0 && n < 4:
+		fmt.Println("0yoriookiku4yoritiisai")
+	case n > 3 && n < 7:
+		fmt.Println("nは3より大きく7より小さい")
+	}
+	*/
+
+	switch n:= 2; n {
+	case 1, 2:
+		fmt.Println("1 or 2")
+	case 3, 4:
+		fmt.Println("3 or 4")
+		/*
+	case n > 3 && n < 6:
+		fmt.Println("nは3より大きく6より小さい")
 		*/
-
-	/*
-	// while文みたいなの
-	point := 0
-	for point < 10 {
-		fmt.Println(point)
-		point++
-	}
-		*/
-	
-	/*
-	// 古典的for
-	for i := 0; i < 10; i++{
-		if i == 3{
-			continue
-		}
-		if i == 6 {
-			break
-		}
-		fmt.Println(i)
-	}
-	*/
-
-	/*
-	// 配列をループ
-	arr := [3]int{1, 2, 3}
-	for i:=0; i<len(arr); i++{
-		fmt.Println(arr[i])
-	}
-	*/
-
-	/*
-	// 範囲式for
-	arr := [3]int{1, 2, 3}
-	for i, v := range arr {
-		fmt.Println(i, v)
-	}
-	*/
-
-	// スライス
-	/*
-	sl := []string{"python", "php", "go"}
-	for i, v := range sl {
-		fmt.Println(i, v)
-	}
-	*/
-
-	// map
-	m := map[string]int{"apple": 100, "banana": 200}
-
-	for key, value := range m {
-		fmt.Println(key, value)
+	default:
+		fmt.Println("I don't know")
 	}
 
-	
 }
