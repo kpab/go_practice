@@ -2,32 +2,18 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
-// if
-// 条件分岐
-
-
+// エラーハンドリング
 
 func main(){
-	a := 1
-	if a == 2 {
-		fmt.Println("two")
-	}else if a == 1 {
-		fmt.Println("one")
-	}else{
-		fmt.Println("I don't know")
-	}
+	var s string = "10"
 
-	// 簡易文付きif文
-	if b := 100;b == 100 {
-		fmt.Println("100")
+	i, err := strconv.Atoi(s)
+
+	if err != nil {
+		fmt.Println(err)
 	}
-	
-	// 簡易文の変数はif文内でしか使えない
-	x := 0
-	if x := 2; true{
-		fmt.Println(x)
-	}
-	fmt.Println(x)
+	fmt.Printf("%T\n", i)
 }
