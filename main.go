@@ -1,28 +1,18 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
-// 並行処理
-// go goroutin(ゴルーチン)
+// init: main関数より先に呼ばれる
+// 初期化に使う
 
-func sub() {
-	for {
-		fmt.Println("Sub Loop")
-		time.Sleep(100 * time.Millisecond)
-	} 
+func init(){
+	fmt.Println("init")
+}
+func init(){
+	fmt.Println("init2")
 }
 
 func main(){
-	go sub()
-	go sub()
-
-	for {
-		fmt.Println("Main Loop")
-		time.Sleep(200 * time.Millisecond)
-	}
-
+	fmt.Println("Main")
 }
 
