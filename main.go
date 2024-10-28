@@ -3,16 +3,34 @@ package main
 import "fmt"
 
 // 型
-// byte(unit8)型
-// 文字列はアスキーコードで表現される
-
+// 配列型
+// あとから要素数を変更できない
 func main(){
-	byteA := []byte{72, 73}
-	fmt.Println(byteA)
-	fmt.Println(string(byteA))
+	// 明示的
+	var arr1 [3]int
+	fmt.Println(arr1)
+	fmt.Printf("%T\n", arr1)
 
-	c := []byte("HI")
-	fmt.Println(c)
+	var arr2 [3]string =  [3]string{"A", "B", "C"}
+	fmt.Println(arr2)
 
-	fmt.Println(string(c))
+	// 暗示的
+	arr3 := [3]int{1, 2, 3}
+	fmt.Println(arr3)
+
+	// 要素数省略
+	arr4 := [...]string{"D", "E"}
+	fmt.Println(arr4)
+	fmt.Printf("%T\n", arr4)	
+
+	// 要素数の操作
+	fmt.Println(arr2[0])
+	fmt.Println(arr2[2])
+	arr2[2] = "X"
+	fmt.Println(arr2[2])
+
+	// var arr5 [4]int
+	// arr5[5]= arr1
+	// fmt.Println(arr5)
+	fmt.Println(len(arr1))
 }
