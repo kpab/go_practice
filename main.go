@@ -1,18 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-// panic & recover
-// 例外処理(pgmを強制終了させる)
+// 並行処理
+// go goroutin(ゴルーチン)
+
+func sub() {
+	for {
+		fmt.Println("Sub Loop")
+		time.Sleep(100 * time.Millisecond)
+	} 
+}
 
 func main(){
-	defer func(){
-		if x := recover(); x != nil {
-			fmt.Println(x)
-		}
-	}()
-	
-	panic("runtime error")
-	fmt.Println("START")
+	go sub()
+	go sub()
+
+	for {
+		fmt.Println("Main Loop")
+		time.Sleep(200 * time.Millisecond)
+	}
+
 }
 
