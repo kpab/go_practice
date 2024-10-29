@@ -2,12 +2,24 @@ package main
 
 import "fmt"
 
+// マップfor
+func main(){
+	m := map[string]int{
+		"Apple" : 100,
+		"Banana" : 200,
+	}
+	for k, v := range m {
+		fmt.Println(k, v)
+	}
+}
+
+/*
 // マップ(pythonの辞書型)
 func main(){
 	// 明示的
 	var m = map[string]int{"A": 100, "B": 200}
 	fmt.Println(m)
-	
+
 	// 暗黙的
 	m2 := map[string]int{"A": 100, "B": 200}
 	fmt.Println(m2)
@@ -16,7 +28,7 @@ func main(){
 	m3 := map[int]string{
 		1: "A",
 		2: "B",
-	}	
+	}
 	fmt.Println(m3)
 
 	// make関数で作る
@@ -39,7 +51,7 @@ func main(){
 
 	// 更新
 	m4[2] = "US"
-	fmt.Println(m4)	
+	fmt.Println(m4)
 	m4[3] = "Korea"
 	fmt.Println(m4)
 
@@ -50,6 +62,8 @@ func main(){
 	// len
 	fmt.Println(len(m4))
 }
+*/
+
 /*
 // スライス可変長引数
 func Sum(s ...int) int {
