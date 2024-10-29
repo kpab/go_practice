@@ -2,11 +2,33 @@ package main
 
 import "fmt"
 
+
+func main(){
+	/*
+	sl := []int{100, 200}
+	sl2 := sl
+
+	sl2[0] = 1000
+	fmt.Println(sl)
+
+	var i int = 10
+	i2 := i
+	i2 = 100
+	fmt.Println(i, i2)
+	*/
+
+	sl := []int{1,2,3,4}
+	sl2 := make([]int,5,10)
+	fmt.Println(sl2)
+	n := copy(sl2, sl) // nはコピーに成功した数
+	fmt.Println(n, sl2)
+}
+/*
 // append make len cap
 func main(){
 	sl := []int{100, 200}
-	fmt.Println(sl)
 	// append
+	fmt.Println(sl)
 	sl = append(sl, 300)
 	fmt.Println(sl)
 
@@ -30,7 +52,7 @@ func main(){
 	fmt.Println(cap(sl3))
 }
 
-
+*/
 
 
 // スライス
