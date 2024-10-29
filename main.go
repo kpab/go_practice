@@ -2,6 +2,55 @@ package main
 
 import "fmt"
 
+// マップ(pythonの辞書型)
+func main(){
+	// 明示的
+	var m = map[string]int{"A": 100, "B": 200}
+	fmt.Println(m)
+	
+	// 暗黙的
+	m2 := map[string]int{"A": 100, "B": 200}
+	fmt.Println(m2)
+
+	// 改行も可
+	m3 := map[int]string{
+		1: "A",
+		2: "B",
+	}	
+	fmt.Println(m3)
+
+	// make関数で作る
+	m4 := make(map[int]string)
+	fmt.Println(m4)
+	m4[1] = "Japan"
+	m4[2] = "USA"
+	fmt.Println(m4)
+
+	// 値の取り出し
+	fmt.Println(m["A"])
+	fmt.Println(m4[2])
+	fmt.Println(m4[3]) // nilではなく空文字が返ってくる
+
+	_, ok := m4[3]
+	if !ok {
+		fmt.Println("ERROR")
+	}
+	// fmt.Println(s, ok)
+
+	// 更新
+	m4[2] = "US"
+	fmt.Println(m4)	
+	m4[3] = "Korea"
+	fmt.Println(m4)
+
+	// 削除
+	delete(m4, 3)
+	fmt.Println(m4)
+
+	// len
+	fmt.Println(len(m4))
+}
+/*
 // スライス可変長引数
 func Sum(s ...int) int {
 	n := 0
@@ -21,7 +70,7 @@ func main(){
 	sl := []int{1, 2, 3}
 	fmt.Println(Sum(sl...))
 }
-
+*/
 
 /*
 // スライス for
