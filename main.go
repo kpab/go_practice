@@ -2,7 +2,25 @@ package main
 
 import "fmt"
 
+// スライス for
+func main(){
+	sl := []string{"A", "B", "C"}
+	fmt.Println(sl)
+	/*
+	for _, v := range sl{
+		fmt.Println(v)
+	}	
+	*/
 
+	// 古典的 for
+	for i:=0;i<len(sl);i++ {
+		fmt.Println(sl[i])	
+	}
+}
+
+
+/*
+// コピー
 func main(){
 	/*
 	sl := []int{100, 200}
@@ -15,14 +33,16 @@ func main(){
 	i2 := i
 	i2 = 100
 	fmt.Println(i, i2)
-	*/
-
+*/
+/*
 	sl := []int{1,2,3,4}
 	sl2 := make([]int,5,10)
 	fmt.Println(sl2)
 	n := copy(sl2, sl) // nはコピーに成功した数
 	fmt.Println(n, sl2)
 }
+*/
+
 /*
 // append make len cap
 func main(){
@@ -54,7 +74,6 @@ func main(){
 
 */
 
-
 // スライス
 // 宣言, 操作
 // 配列と違い要素数指定しない
@@ -65,7 +84,7 @@ func main(){
 
 	// 明示的
 	var sl2 []int = []int{100,200}
-	fmt.Println(sl2) 
+	fmt.Println(sl2)
 
 	// 暗黙的
 	sl3 := []string{"A","B"}
