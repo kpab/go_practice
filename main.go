@@ -2,6 +2,64 @@ package main
 
 import "fmt"
 
+// 構造体(class的なやつ)
+// 定義
+type User struct {
+	Name string
+	Age int
+	// X, Y int
+}
+
+func UpdateUser(user User) { // コピーに対して更新
+	user.Name = "guest"
+	user.Age = 20
+}
+
+func UpdateUser2(user *User) { // アドレスの各フィールドを更新
+	user.Name = "name"
+	user.Age = 18
+}
+
+func main(){
+	var user1 User
+	fmt.Println(user1)
+	user1.Name = "佐藤"
+	user1.Age = 20
+	fmt.Println(user1)
+
+	user2 := User{}
+	fmt.Println(user2)
+	user2.Name = "鈴木"
+	user2.Age = 10
+	fmt.Println(user2)
+
+	user3 := User{Name:"山田", Age:30}
+	fmt.Println(user3)
+
+	user4 := User{"田中", 40}
+	fmt.Println(user4)
+
+	user5 := User{Name:"加藤"}
+	fmt.Println(user5)
+
+	// ポインタ型で生成6, 7
+	user6 := new(User)
+	fmt.Println(user6)
+
+	user7 := &User{}
+	fmt.Println(user7)
+
+	UpdateUser(user1)
+	UpdateUser2(user7)
+
+	fmt.Println(user1)
+	fmt.Println(user7)
+
+
+
+}
+
+/*
 // ポインタ
 func Double(i int) {
 	i = i * 2
@@ -35,8 +93,8 @@ func main(){
 
 	n = 200
 	fmt.Println(*p)
-	*/
-
+*/
+/*
 	Doublev2(&n)
 	fmt.Println(n)
 
@@ -47,7 +105,7 @@ func main(){
 	Doublev3(sl)
 	fmt.Println(sl)
 }
-
+*/
 /*
 // チャネルselect
 // 複数チャネルNI対する処理を、ゴルーチンを停止することなくできる
