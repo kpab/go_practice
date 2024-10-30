@@ -2,6 +2,44 @@ package main
 
 import "fmt"
 
+// 構造体スライス
+type User struct {
+	Name string
+	Age int
+	// X, Y int
+}
+type Users []*User // こっちのが望ましい
+
+/*
+type Users struct {
+	Users []*Users
+}*/
+
+func main() {
+	user1 := User{"user1", 20}
+	user2 := User{"user2", 18}
+	user3 := User{"user3", 25}
+	user4 := User{"user4", 22}
+
+	users := Users{}
+	// 格納
+	users = append(users, &user1)
+	users = append(users, &user2)
+	users = append(users, &user3, &user4)
+
+	fmt.Println(users)
+	
+	for _, u := range users {
+		fmt.Println(*u)
+	}
+
+	users2 := make([]*User, 0)
+	users2 = append(users2, &user1, &user2)
+	for _, u := range users2 {
+		fmt.Println(*u)
+	}
+}
+/*
 // 構造体のコンストラクタ
 type User struct {
 	Name string
