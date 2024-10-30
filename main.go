@@ -2,6 +2,37 @@ package main
 
 import "fmt"
 
+// マップと構造体
+type User struct {
+	Name string
+	Age int
+	// X, Y int
+}
+func main() {
+	m := map[int]User{
+		1: {Name:"user1", Age:10},
+		2: {Name:"user2", Age:20},
+	}
+	fmt.Println(m)
+
+	m2 := map[User]string {
+		{Name:"user1", Age:10}:"神奈川県",
+		{Name:"user2", Age:20}:"東京都",
+	}
+	fmt.Println(m2)
+
+	m3 := make(map[int]User)
+	fmt.Println(m3)
+
+	m3[1] = User{"user3", 18}
+	fmt.Println(m3)
+
+	for _, v := range m {
+		fmt.Println(v)
+	}
+}
+
+/*
 // 構造体スライス
 type User struct {
 	Name string
@@ -14,7 +45,7 @@ type Users []*User // こっちのが望ましい
 type Users struct {
 	Users []*Users
 }*/
-
+/*
 func main() {
 	user1 := User{"user1", 20}
 	user2 := User{"user2", 18}
@@ -28,7 +59,7 @@ func main() {
 	users = append(users, &user3, &user4)
 
 	fmt.Println(users)
-	
+
 	for _, u := range users {
 		fmt.Println(*u)
 	}
