@@ -1,10 +1,20 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
+// チャネルfor
+func main(){
+	ch1 := make(chan int, 3)
+	ch1 <- 1
+	ch1 <- 2
+	ch1 <- 3
+	close(ch1) // これ大事!!
+	for i := range ch1 {
+		fmt.Println(i)
+	}
+}
+
+/*
 // チャネルクローズ
 func reciever(name string, ch chan int) {
 	for {
@@ -18,13 +28,13 @@ func reciever(name string, ch chan int) {
 }
 
 func main(){
-	
+
 	ch1 := make(chan int, 2)
 /*
 	ch1 <- 1
 	// 送信できないが受信はできる
 	close(ch1)
-	
+
 
 	// fmt.Println(<-ch1)
 
@@ -32,7 +42,7 @@ func main(){
 	fmt.Println(i, ok) // okにはオープン状態の真偽値
 
 	i2, ok := <- ch1
-	fmt.Println(i2, ok)*/
+	fmt.Println(i2, ok)*/ /*
 	go reciever("1.goroutin", ch1)
 	go reciever("2.goroutin", ch1)
 	go reciever("3.goroutin", ch1)
@@ -44,7 +54,7 @@ func main(){
 	close(ch1)
 	time.Sleep(3 * time.Second)
 }
-
+*/
 
 /*
 // チャネルとゴルーチン
