@@ -1,13 +1,43 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-// チャネル: 複数のゴルーチン間でデータの受け渡しをするために設計されたデータ構造
-// 宣言・操作
+// チャネルとゴルーチン
+func reciever(c chan int){
+	for {
+		i := <- c
+		fmt.Println(i)
+	}
+}
 
 func main(){
+	ch1 := make(chan int)
+	ch2 := make(chan int)
+
+	// fmt.Println(<-ch1)
+
+	go reciever(ch1)
+	go reciever(ch2)
+
+	i := 0
+	for i < 100 {
+		ch1 <- i
+		ch2 <- i
+		time.Sleep(50*time.Millisecond)
+		i ++
+	}
+}
+
+
+/*
+// チャネル: 複数のゴルーチン間でデータの受け渡しをするために設計されたデータ構造
+// 宣言・操作
+func main(){
 	var ch1 chan int // 送受信
-	
+
 	// var cha2 <- chan int // 受信専用
 	// var cha3 chan <- int // 送信専用
 
@@ -46,10 +76,8 @@ func main(){
 	ch3 <- 5
 	fmt.Println(<-ch3)
 	ch3 <-6 // deadlock!
-} 
-
-
-
+}
+*/
 
 /*
 // マップfor
