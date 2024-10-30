@@ -2,6 +2,34 @@ package main
 
 import "fmt"
 
+// 構造体の埋め込み
+type T struct {
+	User User // goではよく見られる形式,省略可(User)
+}
+
+type User struct {
+	Name string
+	Age int
+	// X, Y int
+}
+
+func (u *User) SetName(name string) {
+	u.Name = name
+}
+
+func main(){
+	t := T{User: User{Name:"user1", Age:1}}
+	fmt.Println(t)
+
+	fmt.Println(t.User)
+	fmt.Println(t.User.Name)
+
+	t.User.SetName("太郎")
+
+	fmt.Println(t)	
+}
+
+/*
 // 構造体メソッド
 type User struct {
 	Name string
@@ -9,7 +37,7 @@ type User struct {
 	// X, Y int
 }
 func (u User) SayName() {
-	fmt.Println("Hello", u.Name)	
+	fmt.Println("Hello", u.Name)
 }
 // できないver
 func (u User) SetName(name string) {
