@@ -2,6 +2,42 @@ package main
 
 import "fmt"
 
+// 構造体メソッド
+type User struct {
+	Name string
+	Age int
+	// X, Y int
+}
+func (u User) SayName() {
+	fmt.Println("Hello", u.Name)	
+}
+// できないver
+func (u User) SetName(name string) {
+	u.Name = name
+}
+// できるver
+// こっち(レシーバー)をポインタ型にするのが望ましい
+func (u *User) SetName2(name string) {
+	u.Name = name
+}
+
+func main() {
+	user1 := User{Name:"user1"}
+	user1.SayName()
+
+	user1.SetName("a")
+	user1.SayName()
+
+	user1.SetName2("a")
+	user1.SayName()
+
+	user2 := &User{Name:"user2"}
+	user2.SetName2("B")
+	user2.SayName()
+}
+
+
+/*
 // 構造体(class的なやつ)
 // 定義
 type User struct {
@@ -19,7 +55,8 @@ func UpdateUser2(user *User) { // アドレスの各フィールドを更新
 	user.Name = "name"
 	user.Age = 18
 }
-
+	/*
+/*
 func main(){
 	var user1 User
 	fmt.Println(user1)
@@ -58,7 +95,7 @@ func main(){
 
 
 }
-
+*/
 /*
 // ポインタ
 func Double(i int) {
