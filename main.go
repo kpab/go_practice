@@ -2,6 +2,73 @@ package main
 
 import "fmt"
 
+// チャネルselect
+// 複数チャネルNI対する処理を、ゴルーチンを停止することなくできる
+func main(){
+	ch1 := make(chan int, 2)
+	ch2 := make(chan string, 2)
+
+	ch2 <- "B"
+	ch1 <- 1
+	ch2 <- "A"
+	ch1 <- 2
+/*
+	v1 := <- ch1
+	v2 := <- ch2
+	fmt.Println(v1)
+	fmt.Println(v2)
+	*/
+	select {
+	case v1 := <- ch1:
+		fmt.Println(v1 + 1000)
+	case v2 := <- ch2:
+		fmt.Println(v2 + "!?")
+	default:
+		fmt.Println("どちらでもない")
+	}// これcaseはswitch文と違い、ランダムに実行される
+
+	ch3 := make(chan int)
+	ch4 := make(chan int)
+	ch5 := make(chan int)
+
+	// - receiver -
+	go func() {
+		for {
+			i := <- ch3
+			ch4 <- i * 2
+		}
+	}()
+	go func() {
+		for {
+			i2 := <- ch4
+			ch5 <- i2 -1
+		}
+	}()
+	// - 送信部分 -
+	n := 0
+	L:
+	for {
+		select {
+		case ch3 <- n:
+			n++
+		case i3 := <- ch5:
+			fmt.Println("recieve", i3)
+		default:
+			if n>100 {
+				break L
+			}
+		}
+		/*
+		if n>100 {
+			break
+		}
+		*/
+		
+	}
+
+}
+
+/*
 // チャネルfor
 func main(){
 	ch1 := make(chan int, 3)
@@ -13,6 +80,7 @@ func main(){
 		fmt.Println(i)
 	}
 }
+*/
 
 /*
 // チャネルクローズ
