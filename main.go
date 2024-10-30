@@ -2,6 +2,25 @@ package main
 
 import "fmt"
 
+// 構造体のコンストラクタ
+type User struct {
+	Name string
+	Age int
+	// X, Y int
+}
+// コンストラクタ関数
+func NewUser(name string, age int) *User {
+	return &User{Name:name, Age:age}
+}
+
+func main() {
+	user1 := NewUser("user1", 22)
+	fmt.Println(user1)
+
+	fmt.Println(*user1)
+}
+
+/*
 // 構造体の埋め込み
 type T struct {
 	User User // goではよく見られる形式,省略可(User)
@@ -26,7 +45,7 @@ func main(){
 
 	t.User.SetName("太郎")
 
-	fmt.Println(t)	
+	fmt.Println(t)
 }
 
 /*
