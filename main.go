@@ -2,6 +2,24 @@ package main
 
 import "fmt"
 
+// 独自型
+type MyInt int
+func (mi MyInt) print() {
+	fmt.Println(mi)
+}
+
+func main() {
+	var mi MyInt
+	fmt.Println(mi) 
+	fmt.Printf("%T\n", mi)
+
+	// i := 100
+	// fmt.Println(mi+i) 計算できない
+
+	mi.print()
+}
+
+/*
 // マップと構造体
 type User struct {
 	Name string
