@@ -1,7 +1,43 @@
 package main
 
-import "fmt"
+/*
+import (
+	"fmt"
+	// . "fmt"
+	// f "fmt"
+	"go_practice/foo"
+)
 
+// スコープ
+
+func appName() string {
+	const AppName = "GoApp"
+	var Version string = "1.0"
+	return AppName + " " + Version
+}
+
+func Do (s string) (b string){ // 引数指定時に定義できてるよ
+	// var b string = s
+	b = s
+	{ // この中での変数はここだけ
+		b := "CCC"
+		fmt.Println(b)
+	}
+	fmt.Println(b)
+	return b
+}
+
+func main() {
+	fmt.Println(foo.Max)
+	// fmt.Println(foo.min) // 頭文字小文字は呼び出せない
+	fmt.Println(foo.ReturnMin())
+	fmt.Println(".fmtでのインポート")
+	fmt.Println(appName())
+
+	fmt.Println(Do("22"))
+}
+
+/*
 // interface
 // fmt.Stringer
 
