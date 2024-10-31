@@ -2,13 +2,35 @@ package main
 
 import "fmt"
 
+// interface
+// fmt.Stringer
+
+// type Stringer interface {
+// 	String() string
+// }
+
+type Point struct {
+	A int
+	B string
+}
+func (p *Point) String() string {
+	return fmt.Sprintf("<<%v, %v>>", p.A, p.B)
+}
+
+func main() {
+	p := &Point{A: 100, B: "ABC"}
+	fmt.Println(p)
+
+}
+
+/*
 // interfac型
 // カスタムエラー
 /*
 type error interface {
 	Error() string
 }
-*/
+*/ /*
 type MyError struct {
 	Message string
 	ErrCode int
@@ -31,9 +53,9 @@ func main(){
 
 	e, ok := err.(*MyError)
 	if ok {
-		fmt.Println(e)		
+		fmt.Println(e)
 	}
-	
+
 }
 
 /*
