@@ -1,36 +1,73 @@
 package main
 
 import (
-	"flag"
 	"fmt"
+	"os"
 )
 
 func main() {
-	// コマンドラインのオプション処理
-	// コマンドラインを処理するサンプル
-	// go run main.go -n 20 -m message -x
-	
-	// オプションの値を格納する変数の定義
-	var (
-		max int
-		msg string
-		x bool
-	)
-	
-	// IntVar 整数のオプション
-	flag.IntVar(&max, "n", 32, "処理数の最大値")
-	// StringVar 文字列のオプション
-	flag.StringVar(&msg, "m", "", "処理メッセージ")
-	// BoolVar bool型のオプション コマンドラインに与えられたらtrue, なければfalse
-	flag.BoolVar(&x, "x", false, "拡張オプション")
+	// fmt.Println("表示")
 
-	// コマンドラインをパース
-	flag.Parse()
+	// // fmt 標準
+	// fmt.Print("Hello")
+	// // 改行
+	// fmt.Println("Hello")
 
-	fmt.Println("処理数の最大値 = ", max)
-	fmt.Println("処理メッセージ = ", msg)
-	fmt.Println("拡張オプション = ", x)
+	// // Println系:各々の文字列は半角スペースで区切られ、文字列の最後に改行を追加
+	// fmt.Println("Hello", "world!!")
+	// fmt.Println("Hello", "world!!")
+
+	// // Printf系:フォーマットを指定
+	// fmt.Printf("%s\n", "Hello")
+	// fmt.Printf("%#v\n", "Hello")
+
+	// Sprint系:出力ではなくフォーマットした結果を文字列で返す
+	// s := fmt.Sprint("Hello")
+	// s1 := fmt.Sprintf("%v\n", "Hello")
+	// s2 := fmt.Sprintln("Hello")
+
+	// fmt.Println(s)
+	// fmt.Println(s1)
+	// fmt.Println(s2)
+
+	// Fprint系:書き込み先指定
+	fmt.Fprint(os.Stdout, "Hello")
+	fmt.Fprintf(os.Stdout, "Hello")
+	fmt.Fprintln(os.Stdout, "Hello")
+
+	f, _ := os.Create("test.txt")
+	defer f.Close()
+
+	fmt.Fprintln(f, "Fprint")
+
 }
+
+// func main() {
+// 	// コマンドラインのオプション処理
+// 	// コマンドラインを処理するサンプル
+// 	// go run main.go -n 20 -m message -x
+	
+// 	// オプションの値を格納する変数の定義
+// 	var (
+// 		max int
+// 		msg string
+// 		x bool
+// 	)
+	
+// 	// IntVar 整数のオプション
+// 	flag.IntVar(&max, "n", 32, "処理数の最大値")
+// 	// StringVar 文字列のオプション
+// 	flag.StringVar(&msg, "m", "", "処理メッセージ")
+// 	// BoolVar bool型のオプション コマンドラインに与えられたらtrue, なければfalse
+// 	flag.BoolVar(&x, "x", false, "拡張オプション")
+
+// 	// コマンドラインをパース
+// 	flag.Parse()
+
+// 	fmt.Println("処理数の最大値 = ", max)
+// 	fmt.Println("処理メッセージ = ", msg)
+// 	fmt.Println("拡張オプション = ", x)
+// }
 /*
 // rand
 func main() {
