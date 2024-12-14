@@ -1,29 +1,42 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"os"
 )
 
-// bufio
+// ioutil
 func main() {
-	// 標準入力を行単位で読み込む
-	// 標準入力をソースにしたスキャナの生成
-	scanner := bufio.NewScanner(os.Stdin)
+	// 入力全体を読み込む
+	f, _ := os.Open("foo.txt")
+	bs, _ := ioutil.ReadAll(f)
+	fmt.Println(string(bs))
 
-	// 入力のスキャンが成功する限り繰り返すループ
-	for scanner.Scan() {
-		// スキャン内容を文字列で出力
-		fmt.Println(scanner.Text())
-	}
-
-	// スキャンにエラーが発生した場合の処理
-	if err := scanner.Err(); err != nil {
-		fmt.Println(os.Stderr, "読み込みエラー: ", err)
+	// ファイルに書き込み
+	if err := ioutil.WriteFile("bar.txt", bs, 06666); err != nil {
+		log.Fatalln(err)
 	}
 }
 
+// bufio
+// func main() {
+// 	// 標準入力を行単位で読み込む
+// 	// 標準入力をソースにしたスキャナの生成
+// 	scanner := bufio.NewScanner(os.Stdin)
+
+// 	// 入力のスキャンが成功する限り繰り返すループ
+// 	for scanner.Scan() {
+// 		// スキャン内容を文字列で出力
+// 		fmt.Println(scanner.Text())
+// 	}
+
+// 	// スキャンにエラーが発生した場合の処理
+// 	if err := scanner.Err(); err != nil {
+// 		fmt.Println(os.Stderr, "読み込みエラー: ", err)
+// 	}
+// }
 
 // strings
 // func main() {
