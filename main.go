@@ -2,28 +2,50 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"strings"
 )
 
-// strconv
+// strings
 func main() {
-	// 真偽値を文字列に変換する
-	// bt := true
-	// fmt.Printf("%T\n", strconv.FormatBool(bt))
+	// 文字列を結合する
+// 	s1 := strings.Join([]string{"A", "B", "C"}, ",")
+// 	s2 := strings.Join([]string{"A", "B", "C"}, "")
+// 	fmt.Println(s1, s2)
 
-	// 整数を文字列に変換する
-	i := strconv.FormatInt(-100, 10)
-	fmt.Printf("%v, %T\n", i, i)
+// 文字列に含まれる部分文字列を検索する
+i1 := strings.Index("ABCDE", "A")
+fmt.Println(i1)
 
-	// 簡易的に変換できる
-	i2 := strconv.Itoa(100)
-	fmt.Printf("%v, %T\n", i2, i2)
+// 省略
 
-	// 省略
 
-	
+// 繰り返して結合
+i2 := strings.Repeat("ABC", 4)
+fmt.Println(i2)
 
 }
+
+
+
+// strconv
+// func main() {
+// 	// 真偽値を文字列に変換する
+// 	// bt := true
+// 	// fmt.Printf("%T\n", strconv.FormatBool(bt))
+
+// 	// 整数を文字列に変換する
+// 	i := strconv.FormatInt(-100, 10)
+// 	fmt.Printf("%v, %T\n", i, i)
+
+// 	// 簡易的に変換できる
+// 	i2 := strconv.Itoa(100)
+// 	fmt.Printf("%v, %T\n", i2, i2)
+
+// 	// 省略
+
+
+
+// }
 
 
 // func main() {
