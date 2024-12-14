@@ -2,23 +2,46 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
-	"os"
+	"regexp"
 )
 
-// ioutil
+// regexp
 func main() {
-	// 入力全体を読み込む
-	f, _ := os.Open("foo.txt")
-	bs, _ := ioutil.ReadAll(f)
-	fmt.Println(string(bs))
+	// Goの正規表現の基本
+	// match, _ := regexp.MatchString("A", "ABC")
+	// fmt.Println(match)
+	
+	// compile
+	re1, _ := regexp.Compile("A")
+	match := re1.MatchString("ABC")
+	fmt.Println(match)
 
-	// ファイルに書き込み
-	if err := ioutil.WriteFile("bar.txt", bs, 06666); err != nil {
-		log.Fatalln(err)
-	}
+	// MustCompile 直接ランタイムエラーする
+	re2 := regexp.MustCompile("A")
+	match2 := re2.MatchString("ABC")
+	fmt.Println(match2)
+
+	// regexp.MustCompile("\\d")
+	// regexp.MustCompile(`\d`)
+
+	// 省略
+
 }
+
+
+
+// ioutil
+// func main() {
+// 	// 入力全体を読み込む
+// 	f, _ := os.Open("foo.txt")
+// 	bs, _ := ioutil.ReadAll(f)
+// 	fmt.Println(string(bs))
+
+// 	// ファイルに書き込み
+// 	if err := ioutil.WriteFile("bar.txt", bs, 06666); err != nil {
+// 		log.Fatalln(err)
+// 	}
+// }
 
 // bufio
 // func main() {
