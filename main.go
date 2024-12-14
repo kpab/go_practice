@@ -1,73 +1,92 @@
 package main
 
 import (
-	"log"
-	"os"
+	"fmt"
+	"strconv"
 )
 
-
+// strconv
 func main() {
-	// log
-	// ログの出力先を変更
-	// log.SetOutput(os.Stdout)
+	// 真偽値を文字列に変換する
+	// bt := true
+	// fmt.Printf("%T\n", strconv.FormatBool(bt))
 
-	// log.Print("Log\n")
-	// log.Println("Log2")
-	// log.Printf("Log%d\n" ,3)
+	// 整数を文字列に変換する
+	i := strconv.FormatInt(-100, 10)
+	fmt.Printf("%v, %T\n", i, i)
 
-	// osのexitを伴う
-	// log.Fatal("Log\n")
-	// log.Fatalln("Log2")
-	// log.Fatalf("Log%d\n" ,3) 
+	// 簡易的に変換できる
+	i2 := strconv.Itoa(100)
+	fmt.Printf("%v, %T\n", i2, i2)
 
-	// log.Panic("Log\n")
-	// log.Panicln("Log2")
-	// log.Panicf("Log%d\n" ,3) 
+	// 省略
 
-	// 任意のファイルを作成し、出力先に指定
-	// // os.Create ファイルの作成
-	// f, err := os.Create("test.log")
-	// if err != nil {
-	// 	return
-	// }
-	// // 作成したio.Writer型のファイルを出力出力先に指定
-	// log.SetOutput(f)
-	// log.Println("ファイルに書き込む")
-
-	// log.SetOutput(os.Stdout)
-	// // ログのフォーマットを指定
-	// // 標準のログフォーマット
-	// log.SetFlags(log.LstdFlags)
-	// log.Println("A")
 	
-	// // マイクロ秒を追加
-	// log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds)
-	// log.Println("B")
-
-	// // 時刻とファイルの行番号(短縮系)
-	// log.SetFlags(log.Ltime | log.Lshortfile)
-	// log.Println("C")
-
-	// log.SetFlags(log.LstdFlags)
-	// // ログのプリフィックスを指定
-	// log.SetPrefix("[LOG]")
-	// log.Println("E")
-
-	// ロガーの生成
-	logger := log.New(os.Stdout, "", log.Ldate | log.Lshortfile)
-	logger.Println("message")
-	log.Println("message")
-
-	// 条件分岐。エラーで終了させる
-	_, err := os.Open("aaaa")
-	if err != nil {
-		// ログ出力
-		// log.Fatalln("Exit", err)
-		logger.Fatalln("Exit", err)
-	}
-
 
 }
+
+
+// func main() {
+// 	// log
+// 	// ログの出力先を変更
+// 	// log.SetOutput(os.Stdout)
+
+// 	// log.Print("Log\n")
+// 	// log.Println("Log2")
+// 	// log.Printf("Log%d\n" ,3)
+
+// 	// osのexitを伴う
+// 	// log.Fatal("Log\n")
+// 	// log.Fatalln("Log2")
+// 	// log.Fatalf("Log%d\n" ,3)
+
+// 	// log.Panic("Log\n")
+// 	// log.Panicln("Log2")
+// 	// log.Panicf("Log%d\n" ,3)
+
+// 	// 任意のファイルを作成し、出力先に指定
+// 	// // os.Create ファイルの作成
+// 	// f, err := os.Create("test.log")
+// 	// if err != nil {
+// 	// 	return
+// 	// }
+// 	// // 作成したio.Writer型のファイルを出力出力先に指定
+// 	// log.SetOutput(f)
+// 	// log.Println("ファイルに書き込む")
+
+// 	// log.SetOutput(os.Stdout)
+// 	// // ログのフォーマットを指定
+// 	// // 標準のログフォーマット
+// 	// log.SetFlags(log.LstdFlags)
+// 	// log.Println("A")
+
+// 	// // マイクロ秒を追加
+// 	// log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds)
+// 	// log.Println("B")
+
+// 	// // 時刻とファイルの行番号(短縮系)
+// 	// log.SetFlags(log.Ltime | log.Lshortfile)
+// 	// log.Println("C")
+
+// 	// log.SetFlags(log.LstdFlags)
+// 	// // ログのプリフィックスを指定
+// 	// log.SetPrefix("[LOG]")
+// 	// log.Println("E")
+
+// 	// ロガーの生成
+// 	// logger := log.New(os.Stdout, "", log.Ldate | log.Lshortfile)
+// 	// logger.Println("message")
+// 	// log.Println("message")
+
+// 	// // 条件分岐。エラーで終了させる
+// 	// _, err := os.Open("aaaa")
+// 	// if err != nil {
+// 	// 	// ログ出力
+// 	// 	// log.Fatalln("Exit", err)
+// 	// 	logger.Fatalln("Exit", err)
+// 	// }
+
+// }
 
 // func main() {
 // 	// fmt.Println("表示")
@@ -110,14 +129,14 @@ func main() {
 // 	// コマンドラインのオプション処理
 // 	// コマンドラインを処理するサンプル
 // 	// go run main.go -n 20 -m message -x
-	
+
 // 	// オプションの値を格納する変数の定義
 // 	var (
 // 		max int
 // 		msg string
 // 		x bool
 // 	)
-	
+
 // 	// IntVar 整数のオプション
 // 	flag.IntVar(&max, "n", 32, "処理数の最大値")
 // 	// StringVar 文字列のオプション
@@ -139,7 +158,7 @@ func main() {
 
 	fmt.Println(rand.Float64())
 	fmt.Println(rand.Float64())
-	fmt.Println(rand.Float64())	
+	fmt.Println(rand.Float64())
 	// 	0.813527291469711
 	// 0.5598026045235738
 	// 0.6695717783859498
@@ -178,7 +197,7 @@ func main() {
 
 	// // 絶対値
 	// fmt.Println(math.Abs(100))
-	// fmt.Println(math.Abs(-100))	
+	// fmt.Println(math.Abs(-100))
 
 	// // 累乗を求める
 	// fmt.Println(math.Pow(0, 2))
@@ -277,7 +296,7 @@ func main() {
 	// fmt.Println(t2.Minute())
 	// fmt.Println(t2.Second())
 	// fmt.Println(t2.Nanosecond())
-	// fmt.Println(t2.Zone())	
+	// fmt.Println(t2.Zone())
 }
 
 /*
@@ -326,7 +345,7 @@ func main() {
 	// n, err := f.Read(bs)
 	// fmt.Println(n)
 	// fmt.Println(string(bs))
-	
+
 	// bs2 := make([]byte, 128)
 
 	// nn, err := f.ReadAt(bs2, 10)
@@ -350,7 +369,7 @@ func main() {
 	// -- Open --
 	// f, err := os.Open("test.txt")
 	// if err != nil {
-	// 	log.Fatalln(err) 
+	// 	log.Fatalln(err)
 	// }
 
 	// defer f.Close()
@@ -383,4 +402,4 @@ func main() {
 	// }()
 	// os.Exit(0)
 }
-	*/
+*/
