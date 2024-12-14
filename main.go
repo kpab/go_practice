@@ -1,48 +1,63 @@
 package main
 
 import (
+	"crypto/md5"
 	"fmt"
-	"sync"
+	"io"
 )
+
+// crypyto
+
+func main() {
+	// MD5ハッシュ値を生成
+	// 任意の文字列からMD5ハッシュ値を生成する処理例
+	h := md5.New()
+
+	io.WriteString(h, "ABCDE")
+
+	fmt.Println(h.Sum(nil))
+
+	s := fmt.Sprintf("%x", h.Sum(nil))
+	fmt.Println(s)
+}
 
 // sync
 
 // ゴルーチンの処理を待ち受ける
-func main() {
-	// sync.WaitGroupを生成\
-	wg := new(sync.WaitGroup)
-	// 待ち受けする後ルーチンの数は3
-	wg.Add(3)
+// func main() {
+// 	// sync.WaitGroupを生成\
+// 	wg := new(sync.WaitGroup)
+// 	// 待ち受けする後ルーチンの数は3
+// 	wg.Add(3)
 
-	go func ()  {
-		for i := 0; i < 100; i++ {
-			fmt.Println("1st Goroutin")
-		}
-		wg.Done() // 完了
-	}()
-	go func ()  {
-		for i := 0; i < 100; i++ {
-			fmt.Println("2nd Goroutin")
-		}
-		wg.Done() // 完了
-	}()
-	go func ()  {
-		for i := 0; i < 100; i++ {
-			fmt.Println("3rd Goroutin")
-		}
-		wg.Done() // 完了
-	}()
+// 	go func ()  {
+// 		for i := 0; i < 100; i++ {
+// 			fmt.Println("1st Goroutin")
+// 		}
+// 		wg.Done() // 完了
+// 	}()
+// 	go func ()  {
+// 		for i := 0; i < 100; i++ {
+// 			fmt.Println("2nd Goroutin")
+// 		}
+// 		wg.Done() // 完了
+// 	}()
+// 	go func ()  {
+// 		for i := 0; i < 100; i++ {
+// 			fmt.Println("3rd Goroutin")
+// 		}
+// 		wg.Done() // 完了
+// 	}()
 
-	// ゴルーチンの完了を待ち受ける
-	// Doneが三つ完了するまで待つ
-	wg.Wait()
+// 	// ゴルーチンの完了を待ち受ける
+// 	// Doneが三つ完了するまで待つ
+// 	wg.Wait()
 
-	// for {
+// 	// for {
 
-	// }
+// 	// }
 
-}
-
+// }
 
 // ミューテックスによる同期処理
 // var st struct{A, B, C int}
