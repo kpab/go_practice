@@ -1,46 +1,110 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 )
 
+
 func main() {
-	// fmt.Println("表示")
+	// log
+	// ログの出力先を変更
+	// log.SetOutput(os.Stdout)
 
-	// // fmt 標準
-	// fmt.Print("Hello")
-	// // 改行
-	// fmt.Println("Hello")
+	// log.Print("Log\n")
+	// log.Println("Log2")
+	// log.Printf("Log%d\n" ,3)
 
-	// // Println系:各々の文字列は半角スペースで区切られ、文字列の最後に改行を追加
-	// fmt.Println("Hello", "world!!")
-	// fmt.Println("Hello", "world!!")
+	// osのexitを伴う
+	// log.Fatal("Log\n")
+	// log.Fatalln("Log2")
+	// log.Fatalf("Log%d\n" ,3) 
 
-	// // Printf系:フォーマットを指定
-	// fmt.Printf("%s\n", "Hello")
-	// fmt.Printf("%#v\n", "Hello")
+	// log.Panic("Log\n")
+	// log.Panicln("Log2")
+	// log.Panicf("Log%d\n" ,3) 
 
-	// Sprint系:出力ではなくフォーマットした結果を文字列で返す
-	// s := fmt.Sprint("Hello")
-	// s1 := fmt.Sprintf("%v\n", "Hello")
-	// s2 := fmt.Sprintln("Hello")
+	// 任意のファイルを作成し、出力先に指定
+	// // os.Create ファイルの作成
+	// f, err := os.Create("test.log")
+	// if err != nil {
+	// 	return
+	// }
+	// // 作成したio.Writer型のファイルを出力出力先に指定
+	// log.SetOutput(f)
+	// log.Println("ファイルに書き込む")
 
-	// fmt.Println(s)
-	// fmt.Println(s1)
-	// fmt.Println(s2)
+	// log.SetOutput(os.Stdout)
+	// // ログのフォーマットを指定
+	// // 標準のログフォーマット
+	// log.SetFlags(log.LstdFlags)
+	// log.Println("A")
+	
+	// // マイクロ秒を追加
+	// log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds)
+	// log.Println("B")
 
-	// Fprint系:書き込み先指定
-	fmt.Fprint(os.Stdout, "Hello")
-	fmt.Fprintf(os.Stdout, "Hello")
-	fmt.Fprintln(os.Stdout, "Hello")
+	// // 時刻とファイルの行番号(短縮系)
+	// log.SetFlags(log.Ltime | log.Lshortfile)
+	// log.Println("C")
 
-	f, _ := os.Create("test.txt")
-	defer f.Close()
+	// log.SetFlags(log.LstdFlags)
+	// // ログのプリフィックスを指定
+	// log.SetPrefix("[LOG]")
+	// log.Println("E")
 
-	fmt.Fprintln(f, "Fprint")
+	// ロガーの生成
+	logger := log.New(os.Stdout, "", log.Ldate | log.Lshortfile)
+	logger.Println("message")
+	log.Println("message")
+
+	// 条件分岐。エラーで終了させる
+	_, err := os.Open("aaaa")
+	if err != nil {
+		// ログ出力
+		// log.Fatalln("Exit", err)
+		logger.Fatalln("Exit", err)
+	}
+
 
 }
+
+// func main() {
+// 	// fmt.Println("表示")
+
+// 	// // fmt 標準
+// 	// fmt.Print("Hello")
+// 	// // 改行
+// 	// fmt.Println("Hello")
+
+// 	// // Println系:各々の文字列は半角スペースで区切られ、文字列の最後に改行を追加
+// 	// fmt.Println("Hello", "world!!")
+// 	// fmt.Println("Hello", "world!!")
+
+// 	// // Printf系:フォーマットを指定
+// 	// fmt.Printf("%s\n", "Hello")
+// 	// fmt.Printf("%#v\n", "Hello")
+
+// 	// Sprint系:出力ではなくフォーマットした結果を文字列で返す
+// 	// s := fmt.Sprint("Hello")
+// 	// s1 := fmt.Sprintf("%v\n", "Hello")
+// 	// s2 := fmt.Sprintln("Hello")
+
+// 	// fmt.Println(s)
+// 	// fmt.Println(s1)
+// 	// fmt.Println(s2)
+
+// 	// Fprint系:書き込み先指定
+// 	fmt.Fprint(os.Stdout, "Hello")
+// 	fmt.Fprintf(os.Stdout, "Hello")
+// 	fmt.Fprintln(os.Stdout, "Hello")
+
+// 	f, _ := os.Create("test.txt")
+// 	defer f.Close()
+
+// 	fmt.Fprintln(f, "Fprint")
+
+// }
 
 // func main() {
 // 	// コマンドラインのオプション処理
