@@ -1,31 +1,48 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"strings"
+	"os"
 )
 
-// strings
+// bufio
 func main() {
-	// 文字列を結合する
-// 	s1 := strings.Join([]string{"A", "B", "C"}, ",")
-// 	s2 := strings.Join([]string{"A", "B", "C"}, "")
-// 	fmt.Println(s1, s2)
+	// 標準入力を行単位で読み込む
+	// 標準入力をソースにしたスキャナの生成
+	scanner := bufio.NewScanner(os.Stdin)
 
-// 文字列に含まれる部分文字列を検索する
-i1 := strings.Index("ABCDE", "A")
-fmt.Println(i1)
+	// 入力のスキャンが成功する限り繰り返すループ
+	for scanner.Scan() {
+		// スキャン内容を文字列で出力
+		fmt.Println(scanner.Text())
+	}
 
-// 省略
-
-
-// 繰り返して結合
-i2 := strings.Repeat("ABC", 4)
-fmt.Println(i2)
-
+	// スキャンにエラーが発生した場合の処理
+	if err := scanner.Err(); err != nil {
+		fmt.Println(os.Stderr, "読み込みエラー: ", err)
+	}
 }
 
 
+// strings
+// func main() {
+// 	// 文字列を結合する
+// // 	s1 := strings.Join([]string{"A", "B", "C"}, ",")
+// // 	s2 := strings.Join([]string{"A", "B", "C"}, "")
+// // 	fmt.Println(s1, s2)
+
+// // 文字列に含まれる部分文字列を検索する
+// i1 := strings.Index("ABCDE", "A")
+// fmt.Println(i1)
+
+// // 省略
+
+// // 繰り返して結合
+// i2 := strings.Repeat("ABC", 4)
+// fmt.Println(i2)
+
+// }
 
 // strconv
 // func main() {
@@ -43,10 +60,7 @@ fmt.Println(i2)
 
 // 	// 省略
 
-
-
 // }
-
 
 // func main() {
 // 	// log
