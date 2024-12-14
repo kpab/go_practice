@@ -1,25 +1,81 @@
 package main
 
 import (
-	"crypto/md5"
+	"encoding/json"
 	"fmt"
-	"io"
+	"log"
+	"time"
 )
+
+// json
+// 構造体からJSONテキストへの変換
+type A struct{}
+
+type User struct {
+	Id int `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Email string `json:"email"`	
+	Created time.Time `json:"created"`
+	A *A `json:"A"`	
+}
+
+// Marshalのカスタム
+func (u User) MarshalJSON() ([]byte, error) {
+	v, err := json.Marshal(&struct{
+		Name string
+	}{
+		Name: "Mr " + u.Name,
+	})
+	return v, err
+}
+
+func main() {
+	u := new(User)
+	u.Id = 1
+	u.Name = "test"
+	u.Email = "example@example.com"
+	u.Created = time.Now()
+
+	// Marshal JSONに変換
+	bs, err := json.Marshal(u)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	fmt.Println(string(bs))
+
+	// ----
+	fmt.Printf("%T\n", bs)
+
+	u2 := new(User)
+
+	// Unmarshal JSONをデータに変換
+	if err := json.Unmarshal(bs, &u2); err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(u2)
+
+	
+
+
+}
+
 
 // crypyto
 
-func main() {
-	// MD5ハッシュ値を生成
-	// 任意の文字列からMD5ハッシュ値を生成する処理例
-	h := md5.New()
+// func main() {
+// 	// MD5ハッシュ値を生成
+// 	// 任意の文字列からMD5ハッシュ値を生成する処理例
+// 	h := md5.New()
 
-	io.WriteString(h, "ABCDE")
+// 	io.WriteString(h, "ABCDE")
 
-	fmt.Println(h.Sum(nil))
+// 	fmt.Println(h.Sum(nil))
 
-	s := fmt.Sprintf("%x", h.Sum(nil))
-	fmt.Println(s)
-}
+// 	s := fmt.Sprintf("%x", h.Sum(nil))
+// 	fmt.Println(s)
+// }
 
 // sync
 
