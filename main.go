@@ -2,33 +2,134 @@ package main
 
 import (
 	"fmt"
-	"regexp"
+	"sync"
 )
 
-// regexp
+// sync
+
+// ゴルーチンの処理を待ち受ける
 func main() {
-	// Goの正規表現の基本
-	// match, _ := regexp.MatchString("A", "ABC")
-	// fmt.Println(match)
-	
-	// compile
-	re1, _ := regexp.Compile("A")
-	match := re1.MatchString("ABC")
-	fmt.Println(match)
+	// sync.WaitGroupを生成\
+	wg := new(sync.WaitGroup)
+	// 待ち受けする後ルーチンの数は3
+	wg.Add(3)
 
-	// MustCompile 直接ランタイムエラーする
-	re2 := regexp.MustCompile("A")
-	match2 := re2.MatchString("ABC")
-	fmt.Println(match2)
+	go func ()  {
+		for i := 0; i < 100; i++ {
+			fmt.Println("1st Goroutin")
+		}
+		wg.Done() // 完了
+	}()
+	go func ()  {
+		for i := 0; i < 100; i++ {
+			fmt.Println("2nd Goroutin")
+		}
+		wg.Done() // 完了
+	}()
+	go func ()  {
+		for i := 0; i < 100; i++ {
+			fmt.Println("3rd Goroutin")
+		}
+		wg.Done() // 完了
+	}()
 
-	// regexp.MustCompile("\\d")
-	// regexp.MustCompile(`\d`)
+	// ゴルーチンの完了を待ち受ける
+	// Doneが三つ完了するまで待つ
+	wg.Wait()
 
-	// 省略
+	// for {
+
+	// }
 
 }
 
 
+// ミューテックスによる同期処理
+// var st struct{A, B, C int}
+
+// // ミューテックスを保持するパッケージ変数
+// var mutex *sync.Mutex
+
+// func UpdateAndPrint(n int) {
+// 	// ロック
+// 	mutex.Lock()
+// 	st.A = n
+// 	time.Sleep(time.Microsecond)
+// 	st.B = n
+// 	time.Sleep(time.Microsecond)
+// 	st.C = n
+// 	time.Sleep(time.Microsecond)
+// 	fmt.Println(st)
+// 	// アンロック
+// 	mutex.Unlock()
+// }
+
+// func main() {
+// 	mutex = new(sync.Mutex)
+
+// 	for i:= 0; i < 5; i++ {
+// 		go func ()  {
+// 			for i := 0; i < 1000; i++ {
+// 				UpdateAndPrint(i)
+// 			}
+// 		}()
+// 	}
+
+// 	for {
+
+// 	}
+
+// }
+
+// var st struct{A, B, C int}
+
+// func UpdateAndPrint(n int) {
+// 	st.A = n
+// 	time.Sleep(time.Microsecond)
+// 	st.B = n
+// 	time.Sleep(time.Microsecond)
+// 	st.C = n
+// 	time.Sleep(time.Microsecond)
+// 	fmt.Println(st)
+// }
+
+// func main() {
+// 	for i:= 0; i < 5; i++ {
+// 		go func ()  {
+// 			for i := 0; i < 1000; i++ {
+// 				UpdateAndPrint(i)
+// 			}
+// 		}()
+// 	}
+
+// 	for {
+
+// 	}
+
+// }
+
+// regexp
+// func main() {
+// 	// Goの正規表現の基本
+// 	// match, _ := regexp.MatchString("A", "ABC")
+// 	// fmt.Println(match)
+
+// 	// compile
+// 	re1, _ := regexp.Compile("A")
+// 	match := re1.MatchString("ABC")
+// 	fmt.Println(match)
+
+// 	// MustCompile 直接ランタイムエラーする
+// 	re2 := regexp.MustCompile("A")
+// 	match2 := re2.MatchString("ABC")
+// 	fmt.Println(match2)
+
+// 	// regexp.MustCompile("\\d")
+// 	// regexp.MustCompile(`\d`)
+
+// 	// 省略
+
+// }
 
 // ioutil
 // func main() {
