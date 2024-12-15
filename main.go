@@ -1,66 +1,84 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
-	"time"
+	"sort"
 )
 
-// json
-// 構造体からJSONテキストへの変換
-type A struct{}
+// sort
 
-type User struct {
-	Id int `json:"id,omitempty"`
-	Name string `json:"name,omitempty"`
-	Email string `json:"email"`	
-	Created time.Time `json:"created"`
-	A *A `json:"A"`	
-}
-
-// Marshalのカスタム
-func (u User) MarshalJSON() ([]byte, error) {
-	v, err := json.Marshal(&struct{
-		Name string
-	}{
-		Name: "Mr " + u.Name,
-	})
-	return v, err
+type Entry struct {
+	Name string
+	Value int
 }
 
 func main() {
-	u := new(User)
-	u.Id = 1
-	u.Name = "test"
-	u.Email = "example@example.com"
-	u.Created = time.Now()
+	i := []int{5, 3, 2, 4, 5, 6, 4, 8, 9, 8, 7, 10}
+	s := []string{"a", "z", "j"}
 
-	// Marshal JSONに変換
-	bs, err := json.Marshal(u)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	fmt.Println(string(bs))
-
-	// ----
-	fmt.Printf("%T\n", bs)
-
-	u2 := new(User)
-
-	// Unmarshal JSONをデータに変換
-	if err := json.Unmarshal(bs, &u2); err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Println(u2)
-
+	fmt.Println(i, s)
 	
+	sort.Ints(i)
 
+	sort.Strings(s)
+
+	fmt.Println(i, s)
+
+
+	// 省略
 
 }
 
+// json
+// 構造体からJSONテキストへの変換
+// type A struct{}
+
+// type User struct {
+// 	Id int `json:"id,omitempty"`
+// 	Name string `json:"name,omitempty"`
+// 	Email string `json:"email"`
+// 	Created time.Time `json:"created"`
+// 	A *A `json:"A"`
+// }
+
+// // Marshalのカスタム
+// func (u User) MarshalJSON() ([]byte, error) {
+// 	v, err := json.Marshal(&struct{
+// 		Name string
+// 	}{
+// 		Name: "Mr " + u.Name,
+// 	})
+// 	return v, err
+// }
+
+// func main() {
+// 	u := new(User)
+// 	u.Id = 1
+// 	u.Name = "test"
+// 	u.Email = "example@example.com"
+// 	u.Created = time.Now()
+
+// 	// Marshal JSONに変換
+// 	bs, err := json.Marshal(u)
+// 	if err != nil {
+// 		log.Fatalln(err)
+// 	}
+
+// 	fmt.Println(string(bs))
+
+// 	// ----
+// 	fmt.Printf("%T\n", bs)
+
+// 	u2 := new(User)
+
+// 	// Unmarshal JSONをデータに変換
+// 	if err := json.Unmarshal(bs, &u2); err != nil {
+// 		fmt.Println(err)
+// 	}
+
+// 	fmt.Println(u2)
+
+// }
 
 // crypyto
 
