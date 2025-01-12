@@ -3,33 +3,15 @@ package main
 import (
 	"fmt"
 
-	"gopkg.in/go-ini/ini.v1"
+	"github.com/google/uuid"
 )
 
-// ini
+// UUID
 
-type ConfigList struct {
-	Port int
-	DbName string
-	SQLDriver string
-}
+func main () {
+	uuidObj, _ := uuid.NewUUID()
+	fmt.Println("   ", uuidObj.String())
 
-var Config ConfigList
-
-func init() {
-	cfg, _ := ini.Load("config.ini")
-
-	Config = ConfigList{
-		Port: cfg.Section("web").Key("port").MustInt(8080),
-
-		DbName: cfg.Section("db").Key("name").MustString("example.sql"),
-
-		SQLDriver: cfg.Section("db").Key("driver").String(),
-	}
-}
-
-func main() {
-	fmt.Printf("Port = %v\n", Config.Port)
-	fmt.Printf("DbName = %v\n", Config.DbName)
-	fmt.Printf("SQLDriver = %v\n", Config.SQLDriver)
+	uuidObj2, _ := uuid.NewRandom()
+	fmt.Println("   ", uuidObj2.String())	
 }
