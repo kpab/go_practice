@@ -1,33 +1,70 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"sort"
+	"time"
 )
 
-// sort
-
-type Entry struct {
-	Name string
-	Value int
+// context
+func longProcess(ctx context.Context, ch chan string)  {
+	fmt.Println("開始")
+	time.Sleep(2 * time.Second)
+	fmt.Println("終了")
+	ch <- "実行結果"
 }
 
 func main() {
-	i := []int{5, 3, 2, 4, 5, 6, 4, 8, 9, 8, 7, 10}
-	s := []string{"a", "z", "j"}
+	ch := make(chan string)
 
-	fmt.Println(i, s)
-	
-	sort.Ints(i)
+	ctx := context.Background()
 
-	sort.Strings(s)
+	ctx, cancel := context.WithTimeout(ctx, 1*time.Second)
 
-	fmt.Println(i, s)
+	defer cancel()
 
+	go longProcess(ctx, ch)
 
-	// 省略
+L:
+	for {
+		select {
+		case <- ctx.Done():
+			fmt.Println("#####Error######")
+			fmt.Println(ctx.Err())
+			break L
+		case s := <-ch:
+			fmt.Println(s)
+			fmt.Println("success")
+			break L
+		}
+	}
 
+	fmt.Println("ループ抜けたm ")
 }
+
+
+// sort
+
+// type Entry struct {
+// 	Name string
+// 	Value int
+// }
+
+// func main() {
+// 	i := []int{5, 3, 2, 4, 5, 6, 4, 8, 9, 8, 7, 10}
+// 	s := []string{"a", "z", "j"}
+
+// 	fmt.Println(i, s)
+
+// 	sort.Ints(i)
+
+// 	sort.Strings(s)
+
+// 	fmt.Println(i, s)
+
+// 	// 省略
+
+// }
 
 // json
 // 構造体からJSONテキストへの変換
